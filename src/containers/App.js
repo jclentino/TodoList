@@ -1,9 +1,5 @@
 import React, { useState } from "react"
-import { TodoSearch } from "./TodoSearch"
-import { TodoCounter } from "./TodoCounter"
-import { TodoList } from "./TodoList"
-import { TodoItem } from "./TodoItem"
-import { CreateTodoButton } from "./CreateTodoButton"
+import AppUi from "./AppUi"
 
 const allTasks = [
   {text: "cocinar", completed: false},
@@ -46,20 +42,16 @@ function App() {
 
   return (
     <>
-      <TodoCounter taskCompleted={taskCompleted} taskTotal={taskTotal} />
-      <TodoSearch search={search} setSearch={setSearch} />
-      <TodoList>
-        {tasks.map(task => (
-          <TodoItem 
-            key={task.text} 
-            text={task.text} 
-            completed={task.completed}
-            completeTask={completeTask}
-            deleteTask={deleteTask}
-          />
-        ))}
-      </TodoList>
-      <CreateTodoButton />
+      <AppUi 
+        tasks={tasks}
+        taskTotal={taskTotal}
+        taskCompleted={taskCompleted}
+        completeTask={completeTask}
+        deleteTask={deleteTask}
+
+        search={search}
+        setSearch={setSearch}
+      />
     </>
   )
 }
