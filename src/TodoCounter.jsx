@@ -1,9 +1,9 @@
 import React from "react";
 import './TodoCounter.css'
 
-const TodoCounter = ()=> {
+const TodoCounter = ({ taskCompleted, taskTotal })=> {
     return (
-        <h2 className="TodoCounter">TodoCounter</h2>
+        <h2 className="TodoCounter">Has completado {taskCompleted} de {taskTotal} tareas</h2>
     )
 }
 
