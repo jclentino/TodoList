@@ -6,9 +6,9 @@ import { TodoItem } from "./TodoItem"
 import { CreateTodoButton } from "./CreateTodoButton"
 
 const allTasks = [
-  {text: "cocinar", completed: true},
-  {text: "lavar", completed: true},
-  {text: "estudiar", completed: true},
+  {text: "cocinar", completed: false},
+  {text: "lavar", completed: false},
+  {text: "estudiar", completed: false},
 ]
 
 function App() {
@@ -30,6 +30,20 @@ function App() {
     })
   }
 
+  const completeTask = (text)=> {
+    const index = tasks.findIndex(task => task.text === text)
+    const newTasks = [ ...tasks]
+    newTasks[index].completed = !newTasks[index].completed 
+    setTaks(newTasks)
+  }
+
+  const deleteTask = (text) => {
+    const index = tasks.findIndex(task => task.text === text)
+    const newTasks = [ ...tasks]
+    newTasks.splice(index, 1)
+    setTaks(newTasks)
+  }
+
   return (
     <>
       <TodoCounter taskCompleted={taskCompleted} taskTotal={taskTotal} />
@@ -40,6 +54,8 @@ function App() {
             key={task.text} 
             text={task.text} 
             completed={task.completed}
+            completeTask={completeTask}
+            deleteTask={deleteTask}
           />
         ))}
       </TodoList>
