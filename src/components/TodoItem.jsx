@@ -18,7 +18,7 @@ const TodoItem = ({ text, completed })=> {
                 className="Icon Icon-delete" 
                 onClick={()=> deleteTask(text)}
             >
-                X
+                x
             </span>
         </li>
     )

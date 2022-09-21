@@ -11,3 +11,12 @@ body {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
+
+  .FirtsTask, .Loading, .Error {
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .Error {
+    color: red; 
+  }

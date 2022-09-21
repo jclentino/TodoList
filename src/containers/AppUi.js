@@ -21,15 +21,15 @@ function AppUi() {
 
   const renderTasks = ({ loading, error, tasks })=> {
     if (loading){
-      return <p>loading...</p>
+      return <p className="Loading">loading...</p>
     }
 
     if (error){
-      return <p>error...</p>
+      return <p className="Error">error...</p>
     }
 
     if (!error && !loading && tasks.length === 0){
-      return <p>crea tu primer todo</p>
+      return <p className="FirtsTask">Crea tu primer todo..</p>
     }
 
     return (

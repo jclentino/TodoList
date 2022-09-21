@@ -1,5 +1,6 @@
-ul {
+.TodoList ul {
     margin: 0;
+    margin-top: 10px;
     padding: 0 0 56px 0;
     list-style: none;
 }

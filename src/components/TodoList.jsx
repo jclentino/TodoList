@@ -3,7 +3,7 @@ import '../styles/TodoList.css'
 
 const TodoList = ({ children })=> {
     return (
-        <section>
+        <section className="TodoList">
             <ul>
                 {children}
             </ul>

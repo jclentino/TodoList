@@ -1,4 +1,4 @@
-.TodoItem {
+/* .TodoItem {
     background-color: #FAFAFA;
     position: relative;
     display: flex;
@@ -28,7 +28,6 @@
     width: 48px;
     font-size: 24px;
     font-weight: bold;
-    /* background-color: #CCC; */
   }
   
   .Icon-check {
@@ -46,4 +45,33 @@
   }
   .Icon-delete:hover {
     color: red;
-  }
+  } */
+
+li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  height: 20px;
+  width: 90%;
+  margin: 5px auto;
+  border: 1px solid black;
+  border-radius: 8px;
+}
+
+li p {  
+  margin: 0;
+  padding: 0; 
+}
+
+li .Icon-check--active {
+  color: #4caf50;
+}
+
+li .TodoItem-p--complete {
+  text-decoration: line-through;
+}
+
+li .Icon-delete:hover {
+  color: red;
+}
