@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../Context/TodoContext";
 import '../styles/TodoItem.css'
 
-const TodoItem = ({ text, completed, completeTask, deleteTask })=> {
+const TodoItem = ({ text, completed })=> {
+    const { completeTask, deleteTask } = useContext(TodoContext)
+
     return (
         <li>
             <span 

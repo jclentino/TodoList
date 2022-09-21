@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import { TodoSearch } from "../components/TodoSearch"
 import { TodoCounter } from "../components/TodoCounter"
 import { TodoList } from "../components/TodoList"
@@ -8,7 +8,15 @@ import { TodoContext, TodoProvider } from "../Context/TodoContext"
 
 
 function AppUi() {
-  const renderTasks = ({ loading, error, tasks, completeTask, deleteTask })=> {
+  const { 
+    loading,
+    error,
+    tasks,
+    completeTask,
+    deleteTask,
+  } = useContext(TodoContext)
+
+  const renderTasks = ({ loading, error, tasks })=> {
     if (loading){
       return <p>loading...</p>
     }
@@ -28,8 +36,6 @@ function AppUi() {
           key={task.text} 
           text={task.text} 
           completed={task.completed}
-          completeTask={completeTask}
-          deleteTask={deleteTask}
         />
         ))}
       </TodoList>
@@ -38,28 +44,12 @@ function AppUi() {
 
   return (
     <>
-      <TodoContext.Consumer>
-        {
-          ({loading,
-            error,
-            tasks,
-            taskTotal,
-            taskCompleted,
-            completeTask,
-            deleteTask,
-            search,
-            setSearch
-          })=> (
-            <>
-              <TodoCounter taskCompleted={taskCompleted} taskTotal={taskTotal} />
-              <TodoSearch search={search} setSearch={setSearch} />
-              <TodoList>
-                {renderTasks({ loading, error, tasks, completeTask, deleteTask })}
-              </TodoList>
-            </>
-          )
-        }
-      </TodoContext.Consumer>      
+      
+      <TodoCounter  />
+      <TodoSearch />
+      <TodoList>
+        {renderTasks({ loading, error, tasks, completeTask, deleteTask })}
+      </TodoList>
       <CreateTodoButton />
     </>
   )
