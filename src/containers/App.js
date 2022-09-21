@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { useLocalStorage } from "../hooks/useLocalStorage"
 import AppUi from "./AppUi"
 
 const allTasks = [
@@ -8,7 +9,7 @@ const allTasks = [
 ]
 
 function App() {
-  const [tasks, setTaks] = useState(allTasks)
+  const [tasks, setTaks] = useLocalStorage('tasks', allTasks)
   const [search, setSearch] = useState('')
 
   const taskCompleted = tasks.filter(task => task.completed).length 
