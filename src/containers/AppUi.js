@@ -4,22 +4,11 @@ import { TodoCounter } from "../components/TodoCounter"
 import { TodoList } from "../components/TodoList"
 import { TodoItem } from "../components/TodoItem"
 import { CreateTodoButton } from "../components/CreateTodoButton"
+import { TodoContext, TodoProvider } from "../Context/TodoContext"
 
 
-function AppUi(props) {
-    const {
-        loading,
-        error,
-        tasks,
-        taskTotal,
-        taskCompleted,
-        completeTask,
-        deleteTask,
-        search,
-        setSearch
-    } = props 
-
-  const renderTasks = ()=> {
+function AppUi() {
+  const renderTasks = ({ loading, error, tasks, completeTask, deleteTask })=> {
     if (loading){
       return <p>loading...</p>
     }
@@ -35,13 +24,13 @@ function AppUi(props) {
     return (
       <TodoList>
         {tasks.map(task => (
-          <TodoItem 
-            key={task.text} 
-            text={task.text} 
-            completed={task.completed}
-            completeTask={completeTask}
-            deleteTask={deleteTask}
-          />
+        <TodoItem 
+          key={task.text} 
+          text={task.text} 
+          completed={task.completed}
+          completeTask={completeTask}
+          deleteTask={deleteTask}
+        />
         ))}
       </TodoList>
     )
@@ -49,20 +38,28 @@ function AppUi(props) {
 
   return (
     <>
-      <TodoCounter taskCompleted={taskCompleted} taskTotal={taskTotal} />
-      <TodoSearch search={search} setSearch={setSearch} />
-      <TodoList>
-        {renderTasks()}
-        {/* {tasks.map(task => (
-          <TodoItem 
-            key={task.text} 
-            text={task.text} 
-            completed={task.completed}
-            completeTask={completeTask}
-            deleteTask={deleteTask}
-          />
-        ))} */}
-      </TodoList>
+      <TodoContext.Consumer>
+        {
+          ({loading,
+            error,
+            tasks,
+            taskTotal,
+            taskCompleted,
+            completeTask,
+            deleteTask,
+            search,
+            setSearch
+          })=> (
+            <>
+              <TodoCounter taskCompleted={taskCompleted} taskTotal={taskTotal} />
+              <TodoSearch search={search} setSearch={setSearch} />
+              <TodoList>
+                {renderTasks({ loading, error, tasks, completeTask, deleteTask })}
+              </TodoList>
+            </>
+          )
+        }
+      </TodoContext.Consumer>      
       <CreateTodoButton />
     </>
   )
