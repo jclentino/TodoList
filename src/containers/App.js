@@ -9,7 +9,7 @@ const allTasks = [
 ]
 
 function App() {
-  const [tasks, setTaks] = useLocalStorage('tasks', allTasks)
+  const {item: tasks, saveItem: setTaks, loading, error} = useLocalStorage('tasks', allTasks)
   const [search, setSearch] = useState('')
 
   const taskCompleted = tasks.filter(task => task.completed).length 
@@ -44,6 +44,9 @@ function App() {
   return (
     <>
       <AppUi 
+        loading={loading}
+        error={error}
+
         tasks={tasks}
         taskTotal={taskTotal}
         taskCompleted={taskCompleted}
