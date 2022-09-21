@@ -4,8 +4,9 @@ import { TodoCounter } from "../components/TodoCounter"
 import { TodoList } from "../components/TodoList"
 import { TodoItem } from "../components/TodoItem"
 import { CreateTodoButton } from "../components/CreateTodoButton"
-import { TodoContext, TodoProvider } from "../Context/TodoContext"
-
+import { TodoContext } from "../Context/TodoContext"
+import { Modal } from "../modal/modal"
+import { TodoForm } from "../components/TodoForm"
 
 function AppUi() {
   const { 
@@ -14,6 +15,8 @@ function AppUi() {
     tasks,
     completeTask,
     deleteTask,
+    modal,
+    setModal
   } = useContext(TodoContext)
 
   const renderTasks = ({ loading, error, tasks })=> {
@@ -50,7 +53,15 @@ function AppUi() {
       <TodoList>
         {renderTasks({ loading, error, tasks, completeTask, deleteTask })}
       </TodoList>
-      <CreateTodoButton />
+      {
+        modal && (
+          <Modal>
+            <TodoForm />
+          </Modal>
+        )
+        
+      }
+      <CreateTodoButton setModal={setModal} />
     </>
   )
 }

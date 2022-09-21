@@ -13,6 +13,7 @@ const TodoProvider = ({ children })=> {
 
     const {item: tasks, saveItem: setTaks, loading, error} = useLocalStorage('tasks', allTasks)
     const [search, setSearch] = useState('')
+    const [modal, setModal] = useState(false)
 
     const taskCompleted = tasks.filter(task => task.completed).length 
     const taskTotal = tasks.length 
@@ -27,6 +28,11 @@ const TodoProvider = ({ children })=> {
         const searchText = search.toLowerCase()
         return  text.includes(searchText)
         })
+    }
+
+    const addTask = (task)=> {
+        const newTask = [ ...tasks, task]
+        setTaks(newTask)
     }
 
     const completeTask = (text)=> {
@@ -54,6 +60,9 @@ const TodoProvider = ({ children })=> {
             deleteTask,
             search,
             setSearch,
+            modal,
+            setModal,
+            addTask
         }}>
             {children}
         </TodoContext.Provider>
