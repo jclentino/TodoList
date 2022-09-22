@@ -1,7 +1,7 @@
 import React from "react";
 import '../styles/TodoSearch.css'
 
-const TodoSearch = ({ search, setSearch })=> {
+const TodoSearch = ({ search, setSearch, loading })=> {
 
     const onChangeEvent = (event)=> {
         const value = event.target.value
@@ -10,7 +10,7 @@ const TodoSearch = ({ search, setSearch })=> {
     }
 
     return (
-        <input className="TodoSearch" placeholder="TodoSearch" onChange={e=> onChangeEvent(e)} value={search}/> 
+        <input disabled={loading} className={`TodoSearch ${loading && "disabled"}`} placeholder="TodoSearch" onChange={e=> onChangeEvent(e)} value={search}/> 
     )
 }
 

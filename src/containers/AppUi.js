@@ -7,6 +7,9 @@ import { CreateTodoButton } from "../components/CreateTodoButton"
 import { TodoContext } from "../Context/TodoContext"
 import { Modal } from "../modal/modal"
 import { TodoForm } from "../components/TodoForm"
+import Header from "../components/Header"
+
+
 
 function AppUi() {
   const { 
@@ -47,9 +50,13 @@ function AppUi() {
 
   return (
     <>
-      
-      <TodoCounter  />
-      <TodoSearch />
+      <Header loading={loading} >
+        <TodoCounter  />
+        <TodoSearch />
+      </Header>
+
+      {/* <TodoCounter  />
+      <TodoSearch /> */}
       <TodoList>
         {renderTasks({ loading, error, tasks, completeTask, deleteTask })}
       </TodoList>
